@@ -13,6 +13,11 @@ FORECAST = (
     "and every puddle is exactly ankle-deep — choose your battles, commuters."
 )
 
+# The gate refuses any entry outside 1-140 characters: fail loudly here
+# rather than submitting a line the scorer would reject.
+if not 1 <= len(FORECAST) <= 140:
+    raise ValueError(f"forecast is {len(FORECAST)} characters, must be 1-140")
+
 
 def main() -> None:
     os.makedirs("/output", exist_ok=True)
